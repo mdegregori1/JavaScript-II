@@ -58,28 +58,59 @@ const runners = [
 // ==== Challenge 1: Use .forEach() ====
 // The event director needs both the first and last names of each runner for their running bibs. Combine both the first and last names and populate a new array called `fullNames`. This array will contain just strings.
 let fullNames = [];
+runners.forEach(function(items) {
+  return fullNames.push(`${items.first_name} ${items.last_name}`);
+});
 console.log(fullNames);
 
 // ==== Challenge 2: Use .map() ====
 // The event director needs to have all the runners' first names in uppercase because the director BECAME DRUNK WITH POWER. Populate an array called `firstNamesAllCaps`. This array will contain just strings.
-let firstNamesAllCaps = [];
+let firstNamesAllCaps = runners.map(function(item){
+  return item.first_name.toUpperCase();
+});
 console.log(firstNamesAllCaps);
+
 
 // ==== Challenge 3: Use .filter() ====
 // The large shirts won't be available for the event due to an ordering issue. We need a filtered version of the runners array, containing only those runners with large sized shirts so they can choose a different size. This will be an array of objects.
-let runnersLargeSizeShirt = [];
+let runnersLargeSizeShirt = runners.filter(function(item){
+  return item.shirt_size === "L";
+});
 console.log(runnersLargeSizeShirt);
 
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations and save the total into a ticketPriceTotal variable.
-let ticketPriceTotal = 0;
+let ticketPriceTotal = runners.reduce(function(accumulator,item){
+  return accumulator + item.donation;
+},0);
 console.log(ticketPriceTotal);
+
 
 // ==== Challenge 5: Be Creative ====
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
 // Problem 1
+// A sponsor wants to reward people who donated more than $250. Create a filtered array so that the donors can be contacted and rewarded.
+let HighTicketDonors = runners.filter(function(item){
+  return item.donation > 250;
+});
+console.log(HighTicketDonors);
 
 // Problem 2
-
+// The same donor from problem #1 wants to create a banner with the total amount donated by the top donors. Find a way for him to be lazy and just get the total amount without having to do math. 
+let HighTicketRewards = HighTicketDonors.reduce(function(accumulator,item){
+  return accumulator + item.donation;
+},0);
+console.log(HighTicketRewards);
 // Problem 3
+// The same sponsor wants to find a list of people who donated less than $10, BY NAME, and shame them for being cheap. Create a list of these donors, and then console.log their full name only.
+let CheapDonors = runners.filter(function(item){
+  return item.donation < 10;
+});
+console.log(CheapDonors);
+
+let CheapDonorsFullName = []
+CheapDonors.forEach (function(items){
+  return CheapDonorsFullName.push(`${items.first_name} ${items.last_name}`);
+});
+console.log(CheapDonorsFullName);
