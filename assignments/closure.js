@@ -4,6 +4,23 @@
 // that manipulates variables defined in the outer scope.
 // The outer scope can be a parent function, or the top level of the script.
 
+//Book Store
+function BookStore(BookStoreName){
+  const Competitor1 = "Barnes and Noble";
+  const Competitor2 = "Half Price Books";
+
+  function Author(BookAuthor){
+
+    function Book(BookTitle){
+      console.log(`${BookTitle} by ${BookAuthor} is available at ${BookStoreName}, but not at ${Competitor1} or ${Competitor2}!`);
+    }//book title close
+    Book ('The Stranger');
+  }//author close
+  Author('Albert Camus');
+}//bookstore close
+
+BookStore('Book People');
+
 
 /* STRETCH PROBLEMS, Do not attempt until you have completed all previous tasks for today's project files */
 
